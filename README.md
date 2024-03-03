@@ -22,4 +22,4 @@ Once running, it will listen on ```http://localhost:8080/```
  - Delete a user: This is on a different endpoint and requires authentication. By default, a few users are created in the DB you can use. For example: ```curl -X DELETE -i http://localhost:8080/users-protected/<user id> -u "un1:p1"```
 
 ### UI Usage
-The UI is very spartian. There is only one page with some functionality, to delete a user. Its on ```http://localhost:8080/protected-users-page```. It requires authentication.
+The UI is very spartian. There is only one page with some functionality, to delete a user. Its on ```http://localhost:8080/protected-users-page```. It requires authentication. There are 4 users created by default: username ```un1``` with password ```p1```, ```un2``` with password ```p2```, ```un3``` with password ```p3``` and ```un4``` with password ```p4```.
