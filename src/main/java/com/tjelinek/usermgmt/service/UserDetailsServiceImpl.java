@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.tjelinek.usermgmt.dao.UserRepository;
 import com.tjelinek.usermgmt.dto.User;
-import com.tjelinek.usermgmt.dto.UserDetailsDao;
+import com.tjelinek.usermgmt.dto.UserDetailsDto;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByUsername(username);
 		if (user != null) {
-			return new UserDetailsDao(user);
+			return new UserDetailsDto(user);
 		}
 
 		throw new UsernameNotFoundException("User with name " + username + " can not be found");

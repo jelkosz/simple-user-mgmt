@@ -6,13 +6,13 @@ import java.util.Collections;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class UserDetailsDao implements UserDetails {
+public class UserDetailsDto implements UserDetails {
 
 	private static final long serialVersionUID = -1795174812148770458L;
 	
 	private final User user;
 	
-	public UserDetailsDao(User user) {
+	public UserDetailsDto(User user) {
 		super();
 		this.user = user;
 	}
