@@ -26,7 +26,8 @@ public class ProjectConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(requests -> requests.requestMatchers("/users-protected/**").authenticated()
-						.requestMatchers("/protected-users-page").authenticated().anyRequest().permitAll())
+						.requestMatchers("/protected-users-page").authenticated()
+						.anyRequest().permitAll())
 				.httpBasic(withDefaults()).formLogin(formLogin -> formLogin.defaultSuccessUrl("/protected-users-page"))
 				.authenticationProvider(daoAuthenticationProvider());
 		return http.build();
