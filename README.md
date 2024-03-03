@@ -9,8 +9,7 @@ From the root of the project, run ```mvn clean install``` to compile the and  ``
 
 Once running, it will listen on ```http://localhost:8080/```
 
-## Usage
-### Unsecured REST endpoints
+## REST API Usage
 Load the list of users: ```curl -X GET -i http://localhost:8080/users```. Please note that the API will never return the user password.
 
 Get one particular user: ```curl -X GET -i http://localhost:8080/users/<user id>```
@@ -21,5 +20,5 @@ Edit a user: ```curl -X PUT -i http://localhost:8080/users/<user id> -H "Content
 
 Delete a user: This is on a different endpoint and requires authentication. By default, a few users are created in the DB you can use. For example: ```curl -X DELETE -i http://localhost:8080/users-protected/<user id> -u "un1:p1"```
 
-## UI
+## UI Usage
 The UI is very spartian. There is only one page with some functionality, to delete a user. Its on ```http://localhost:8080/protected-users-page```. It requires authentication.
