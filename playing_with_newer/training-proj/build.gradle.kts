@@ -44,4 +44,5 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    environment("db_addr", "localhost")
 }
