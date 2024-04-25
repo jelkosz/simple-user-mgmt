@@ -11,22 +11,15 @@ class UserService (val usersRepository: UsersRepository) {
 
     fun loadUsers(): Iterable<UserDto> = usersRepository.findAll()
 
-    fun saveUser(user: UserDto): UserDto {
-        ensureUniqueUserName(user.name)
-        return usersRepository.save(user)
-    }
+    fun saveUser(user: UserDto): UserDto = user.ensureUnique { usersRepository.save(it) }
 
-    fun loadUserById(id: UUID): UserDto {
-        return usersRepository.findById(id).orElseThrow { UserNotFoundException("User with id $id not found") }
-    }
+    fun updateUser(uuid: UUID, user: UserDto): UserDto = user.ensureUnique { usersRepository.save(it.copy(id = uuid)) }
 
-    fun updateUser(uuid: UUID, user: UserDto): UserDto {
-        ensureUniqueUserName(user.name)
-        return usersRepository.save(user.copy(id = uuid))
-    }
+    fun loadUserById(id: UUID): UserDto = usersRepository.findById(id).orElseThrow { UserNotFoundException("User with id $id not found") }
 
-    fun ensureUniqueUserName(name: String) {
+    fun UserDto.ensureUnique(action: (UserDto) -> UserDto): UserDto {
         usersRepository.findByName(name) == null || throw UserManipulationException("User with name $name already exists.")
+        return action(this)
     }
 }
 
