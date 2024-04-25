@@ -17,8 +17,8 @@ import org.springframework.security.web.SecurityFilterChain
 class ProjectConfig(val userDetailsService: UserDetailsService) {
 
     @Bean
-    fun filterChain(http: HttpSecurity): SecurityFilterChain {
-        return http.csrf {
+    fun filterChain(http: HttpSecurity): SecurityFilterChain =
+        http.csrf {
             it.disable()
         }.authorizeHttpRequests {
             it.requestMatchers("/users/**").authenticated()
@@ -26,7 +26,6 @@ class ProjectConfig(val userDetailsService: UserDetailsService) {
         }.authenticationProvider(daoAuthenticationProvider())
             .httpBasic(Customizer.withDefaults())
             .build()
-    }
 
     @Bean
     fun daoAuthenticationProvider(): DaoAuthenticationProvider =
