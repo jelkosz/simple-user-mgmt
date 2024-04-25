@@ -1,7 +1,5 @@
 package com.example.trainingproj
 
-import com.example.trainingproj.dto.UserDto
-import feign.FeignException.NotFound
 import org.springframework.stereotype.Service
 import java.util.UUID
 
@@ -12,7 +10,6 @@ class UserService (val usersRepository: UsersRepository) {
 
     fun saveUser(user: UserDto): UserDto {
         ensureUniqueUserName(user.name)
-
         return usersRepository.save(user)
     }
 
@@ -21,7 +18,7 @@ class UserService (val usersRepository: UsersRepository) {
     }
 
     fun updateUser(uuid: UUID, user: UserDto): UserDto {
-//        ensureUniqueUserName(user.name)
+        ensureUniqueUserName(user.name)
         return usersRepository.save(user.copy(id = uuid))
     }
 

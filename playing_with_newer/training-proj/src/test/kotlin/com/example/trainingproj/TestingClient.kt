@@ -1,6 +1,5 @@
 package com.example.trainingproj
 
-import com.example.trainingproj.dto.UserDto
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

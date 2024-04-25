@@ -1,6 +1,5 @@
 package com.example.trainingproj
 
-import com.example.trainingproj.dto.UserDto
 import feign.FeignException.FeignClientException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
@@ -59,49 +58,19 @@ class TrainingProjApplicationTests @Autowired constructor(val testingClient: Tes
         }
     }
 
-//    @Test
-//    fun updateUser_sameUsername() {
-//        val testingName = "testing name - update user"
-//        val created: UserDto = testingClient.createUser(UserDto().copy(name=testingName)).nsbody()
-//
-//        fun outer (uuid: UUID): (UserDto) -> ResponseEntity<UserDto> {
-//            return fun (userDto: UserDto): ResponseEntity<UserDto> {
-//                return testingClient.updateUser(uuid, userDto)
-//            }
-//        }
-//
-//        assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, created.safeCallApi(outer(created.id)))
-//
-//    }
-
     @Test
-    fun `just playing around`() {
+    fun updateUser_sameUsername() {
+        val testingName = "testing name - update user"
+        val created: UserDto = testingClient.createUser(UserDto().copy(name=testingName)).nsbody()
 
-
-        val x = object : X() {
-
-            override fun doSomething() {
-                super.doSomething()
-                println("!!!!!!!!!!!!!!!!!!!1hello world")
+        fun outer (uuid: UUID): (UserDto) -> ResponseEntity<UserDto> {
+            return fun (userDto: UserDto): ResponseEntity<UserDto> {
+                return testingClient.updateUser(uuid, userDto)
             }
         }
 
-        x.doSomething()
+        assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, created.safeCallApi(outer(created.id)))
 
-        Y.doSomething()
-    }
-
-    open class X {
-        open fun doSomething() {
-            println("!!!!!!!!!!!!!!!! upper")
-        }
-    }
-
-    object Y : X() {
-        override fun doSomething() {
-            super.doSomething()
-            println("ASDAAAAAAAAAAAAAAAa from child")
-        }
     }
 
     companion object {
@@ -112,7 +81,7 @@ class TrainingProjApplicationTests @Autowired constructor(val testingClient: Tes
         }
     }
 
-    fun ResponseEntity<UserDto>.nsbody(): UserDto = body ?: throw RuntimeException("should not be null")
+    fun ResponseEntity<UserDto>.nsbody(): UserDto = body ?: throw RuntimeException("body should not be null")
 
     // ok, I know, this does not make too much sense here. I just wanted to play with extension functions
     fun <T> T.safeCallApi(call: (T) -> ResponseEntity<UserDto>): HttpStatusCode =
