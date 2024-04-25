@@ -70,7 +70,6 @@ class TrainingProjApplicationTests @Autowired constructor(val testingClient: Tes
         }
 
         assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, created.safeCallApi(outer(created.id)))
-
     }
 
     companion object {
