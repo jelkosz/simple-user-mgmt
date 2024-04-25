@@ -17,7 +17,6 @@ class UserController(val userService: UserService) {
     fun updateUser(@PathVariable uuid: UUID, @RequestBody user: UserDto) = userService.updateUser(uuid, user)
 
     @PostMapping
-    fun createUser(@RequestBody user: UserDto): UserDto {
-        return userService.saveUser(user)
-    }
+    fun createUser(@RequestBody user: UserDto): UserDto = userService.saveUser(user)
+    
 }
